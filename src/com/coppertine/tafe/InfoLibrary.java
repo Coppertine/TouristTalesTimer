@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.nio.file.Files;
@@ -20,28 +21,40 @@ import java.util.ArrayList;
  * @author Coppertine
  */
 
-public class InfoLibrary {
-    
-    public static ArrayList<String> ReadFile(String fileName)
-    {
-        if(!new File(fileName).exists()) return null;
-        
+public final class InfoLibrary {
+
+    /**
+     * Private constructor used to specify a utility class is used.
+     */
+    private InfoLibrary() { }
+
+    /**
+     * Reads specified file as string to return as a list of strings per line.
+     * @param fileName Directory to specified file string.
+     * @return ArrayList<String>
+     * @throws IllegalArgumentException If string is empty
+     * or parses errors into program.
+     * @throws IOException when file parses an error when turning into string.
+     * @see ArrayList
+     * @see FileReader
+     */
+    public static ArrayList<String>
+        readFile(final String fileName) throws IOException {
+        if (!new File(fileName).exists()) {
+            return null;
+        }
+
         ArrayList<String> list = new ArrayList<String>();
-        try
-        {
+        try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line = "";
-            while((line = br.readLine()) != null)
-            {
+            while ((line = br.readLine()) != null) {
                 list.add(line);
             }
             br.close();
+        } catch (IOException e) {
+            throw e;
         }
-        catch (Exception e)
-        {
-            System.err.println("Error: " + e.getMessage());            
-        }
-        
         return list;
     }
     
