@@ -25,16 +25,19 @@ public class TouristTalesProofofConceptTimer extends JFrame
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         TouristTalesProofofConceptTimer mainFrame = new TouristTalesProofofConceptTimer();
         mainFrame.run();
     }
 
     private void run() {
-        setBounds(0,0, 300, 550);
+        setBounds(0,0, 550, 300);
         setTitle("TouristTales - Timer");
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
+        
+        this.addWindowListener(this);
+        setVisible(true);
     }
     
     @Override
@@ -49,7 +52,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+        System.exit(0);
     }
 
     @Override
