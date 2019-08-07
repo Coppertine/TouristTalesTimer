@@ -36,6 +36,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
         
+        
         this.addWindowListener(this);
         setVisible(true);
     }
