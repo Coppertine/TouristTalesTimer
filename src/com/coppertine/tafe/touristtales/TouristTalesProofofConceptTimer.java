@@ -24,19 +24,23 @@ public class TouristTalesProofofConceptTimer extends JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
-        TouristTalesProofofConceptTimer mainFrame = new TouristTalesProofofConceptTimer();
+    public static void main(final String[] args) {
+        TouristTalesProofofConceptTimer mainFrame =
+                new TouristTalesProofofConceptTimer();
         mainFrame.run();
     }
 
+    /**
+     *
+     */
     private void run() {
-        setBounds(0,0, 550, 300);
+        final int windowLength = 550;
+        final int windowHeight = 300;
+        setBounds(0, 0, windowLength, windowHeight);
         setTitle("TouristTales - Timer");
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
-        
-        
+
         this.addWindowListener(this);
         setVisible(true);
     }
