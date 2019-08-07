@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.coppertine.tafe.java;
+package com.coppertine.tafe.touristtales;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
+import javax.swing.SpringLayout;
 
 /**
  *
@@ -25,11 +26,17 @@ public class TouristTalesProofofConceptTimer extends JFrame
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        
-        
+        TouristTalesProofofConceptTimer mainFrame = new TouristTalesProofofConceptTimer();
+        mainFrame.run();
     }
 
+    private void run() {
+        setBounds(0,0, 300, 550);
+        setTitle("TouristTales - Timer");
+        SpringLayout layout = new SpringLayout();
+        setLayout(layout);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
