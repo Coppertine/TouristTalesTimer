@@ -5,6 +5,7 @@
  */
 package com.coppertine.tafe.touristtales;
 
+import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -16,10 +17,20 @@ import javax.swing.SpringLayout;
 
 /**
  *
- * @author nick_
+ * @author Coppertine
+ * @version 0.0.1 pre
  */
 public class TouristTalesProofofConceptTimer extends JFrame
         implements ActionListener, WindowListener, KeyListener {
+    /**
+     * Global Button objects used within program.
+     */
+    private Button btnStart, btnStop, btnSettings;
+
+    /**
+     * Object that changes depending on the state of the current timer.
+     */
+    private boolean timerRunning = false;
 
     /**
      * @param args the command line arguments
@@ -31,7 +42,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
     }
 
     /**
-     *
+     * Creates the Swing Layout frame to the program.
      */
     private void run() {
         final int windowLength = 550;
@@ -41,13 +52,36 @@ public class TouristTalesProofofConceptTimer extends JFrame
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
 
+        generateGUI();
         this.addWindowListener(this);
         setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(final ActionEvent e) {
+    /**
+     * References all GUI objects to the program.
+     */
+    public final void generateGUI() {
+        renderButtons();
+    }
 
+    /**
+     * Creates and renders buttons used within this GUI.
+     */
+    public final void renderButtons() {
+        
+    }
+
+    @Override
+    public final void actionPerformed(final ActionEvent e) {
+        if (e.getSource() == btnStart) {
+            
+        }
+        if (e.getSource() == btnStop) {
+            
+        }
+        if (e.getSource() == btnSettings) {
+            
+        }
     }
 
     @Override
