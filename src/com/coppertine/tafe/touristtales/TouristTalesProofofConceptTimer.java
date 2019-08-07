@@ -44,60 +44,60 @@ public class TouristTalesProofofConceptTimer extends JFrame
         this.addWindowListener(this);
         setVisible(true);
     }
-    
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public void actionPerformed(final ActionEvent e) {
+
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
-        
+    public void windowOpened(final WindowEvent e) {
+
     }
 
     @Override
-    public void windowClosing(WindowEvent e) {
+    public final void windowClosing(final WindowEvent e) {
         System.exit(0);
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
-        
+    public void windowClosed(final WindowEvent e) {
+
     }
 
     @Override
-    public void windowIconified(WindowEvent e) {
-        
+    public void windowIconified(final WindowEvent e) {
+
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
-        
+    public void windowDeiconified(final WindowEvent e) {
+
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {
-        
+    public void windowActivated(final WindowEvent e) {
+
     }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
-        
+    public void windowDeactivated(final WindowEvent e) {
+
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        
+    public void keyTyped(final KeyEvent e) {
+
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        
+    public void keyPressed(final KeyEvent e) {
+
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        
+    public void keyReleased(final KeyEvent e) {
+
     }
-    
+
 }
