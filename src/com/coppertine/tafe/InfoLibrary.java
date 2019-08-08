@@ -100,15 +100,19 @@ public final class InfoLibrary {
             throw e;
         }
     }
-    
-    public static void WriteRAF(String fileName, String input) throws IOException
-    {
-        try
-        {
+
+    /**
+     * Writes RandomAccess into specified file.
+     * @param fileName String to the file directory.
+     * @param input String to be converted to a RandomAccess type.
+     * @throws IOException if issues are found when writing
+     */
+    public static void
+        writeRAF(final String fileName, final String input) throws IOException {
+        try {
             RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
             raf.writeUTF(input);
             raf.close();
-            
         } catch (IOException e) {
             throw e;
         }
