@@ -1,6 +1,5 @@
 package com.coppertine.tafe;
 
-    
 
 
 import java.io.BufferedReader;
@@ -141,36 +140,51 @@ public final class InfoLibrary {
         return str;
 
     }
-    
-    public static String CSVFormat(String[] input)
-    {
+
+    /**
+     * Converts an array of Strings into Comma Separated Values.
+     * @param input Array of all strings to be used into Comma Separated Values.
+     * @return String
+     */
+    public static String formatCSV(final String[] input) {
         return String.join(",", input);
     }
-    
-    public static double getBrightness(javafx.scene.paint.Color c) {
+
+    /**
+     * Gets the JavaFX color's brightness.
+     * @param c using JavaFX scene paint.
+     * @return double brightness value from 0-255
+     * @see javafx.scene.paint.Color
+     */
+    public static double getBrightness(final javafx.scene.paint.Color c) {
+        final double redDivision = 0.241;
+        final double greenDivision = 0.691;
+        final double blueDivision = 0.68;
+        final double rgbMax = 255;
         return Math.sqrt(
-        c.getRed() * c.getRed() * .241 +
-        c.getGreen() * c.getGreen() * .691 +
-         c.getBlue() * c.getBlue() * .068) * 255;
+            c.getRed() * c.getRed() * redDivision
+            + c.getGreen() * c.getGreen() * greenDivision
+            + c.getBlue() * c.getBlue() * blueDivision
+        ) * rgbMax;
     }
-    
 
-    /* Using GeeksforGeeks Method */
-    public static String[] GetStringArray(ArrayList<String> arr) 
-    { 
-  
-        // declaration and initialise String Array 
-        String str[] = new String[arr.size()]; 
-  
-        // ArrayList to Array Conversion 
-        for (int j = 0; j < arr.size(); j++) { 
-  
-            // Assign each value to String array 
-            str[j] = arr.get(j); 
-        } 
-  
-        return str; 
-    } 
 
-    
+    /**
+     * Converts String ArrayList into a String Array.
+     * @param arr ArrayList of strings
+     * @return String[] Array of Strings.
+     */
+    public static String[] getStringArray(final ArrayList<String> arr) {
+        // declaration and initialise String Array
+        String[] str = new String[ arr.size() ];
+
+        // ArrayList to Array Conversion
+        for (int j = 0; j < arr.size(); j++) {
+
+            // Assign each value to String array
+            str[j] = arr.get(j);
+        }
+
+        return str;
+    }
 }
