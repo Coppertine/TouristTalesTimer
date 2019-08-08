@@ -108,7 +108,9 @@ public final class InfoLibrary {
      * @throws IOException if issues are found when writing
      */
     public static void
-        writeRAF(final String fileName, final String input) throws IOException {
+        writeRAF(
+                final String fileName,
+                final String input) throws IOException {
         try {
             RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
             raf.writeUTF(input);
@@ -117,22 +119,25 @@ public final class InfoLibrary {
             throw e;
         }
     }
-    
-    public static String ReadRAF(String fileName, int input)
-    {
+
+    /**
+     * Reads the RandomAccessFile.
+     * @param fileName string to specified RandomAccessFile
+     * @param input Integer to grab the returning string from a specified index.
+     * @return String
+     * @throws IOException if issues are found when reading the file.
+     */
+    public static String
+        readRAF(final String fileName, final int input) throws IOException {
         String str = "";
-        try
-        {
+        try {
             RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
             raf.seek(input);
             str = raf.readUTF();
             raf.close();
-            
-        } catch (Exception e)
-        {
-            System.out.println(e.toString());
+        } catch (IOException e) {
+            throw e;
         }
-        
         return str;
 
     }
