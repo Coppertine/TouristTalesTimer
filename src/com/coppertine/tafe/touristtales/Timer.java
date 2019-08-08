@@ -81,11 +81,10 @@ public class Timer {
     }
 
     /**
-     * sets Logged Start Time.
-     * @param loggedStart LocalDateTime object.
+     * Starts the timer by copying the LocalDateTime from the users computer.
      */
-    public final void setLoggedStartTime(final LocalDateTime loggedStart) {
-        this.loggedStartTime = loggedStart;
+    public final void startTimer() {
+        this.loggedStartTime = LocalDateTime.now();
     }
 
     /**
@@ -98,10 +97,10 @@ public class Timer {
 
     /**
      * Sets the Log End Time.
-     * @param loggedEnd LocalEndTime
+     *
      */
-    public final void setLoggedEndTime(final LocalDateTime loggedEnd) {
-        this.loggedEndTime = loggedEnd;
+    public final void endTimer() {
+        this.loggedEndTime = LocalDateTime.now();
     }
 
 }
