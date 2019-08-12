@@ -5,7 +5,10 @@
  */
 package com.coppertine.tafe.touristtales;
 
+import com.coppertine.tafe.Declarator;
+import com.coppertine.tafe.Vector2;
 import java.awt.Button;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -28,11 +31,6 @@ public class TouristTalesProofofConceptTimer extends JFrame
     private Button btnStart, btnStop, btnSettings;
 
     /**
-     * Object that changes depending on the state of the current timer.
-     */
-    private boolean timerRunning = false;
-
-    /**
      * @param args the command line arguments
      */
     public static void main(final String[] args) {
@@ -52,23 +50,67 @@ public class TouristTalesProofofConceptTimer extends JFrame
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
 
-        generateGUI();
+        generateGUI(layout);
         this.addWindowListener(this);
         setVisible(true);
     }
 
     /**
      * References all GUI objects to the program.
+     * @param layout SpringLayout
      */
-    public final void generateGUI() {
-        renderButtons();
+    public final void generateGUI(final SpringLayout layout) {
+        renderButtons(layout);
     }
 
     /**
      * Creates and renders buttons used within this GUI.
+     * @param layout SpringLayout
      */
-    public final void renderButtons() {
-        
+    public final void renderButtons(final SpringLayout layout) {
+        final int buttonHeight = 25;
+        final int buttonLength = 80;
+
+        final Vector2 position = new Vector2(15, 200);
+        btnStart = generateButton(
+                layout,
+                new Declarator(
+                        btnStart,
+                        "Start",
+                        position,
+                        buttonLength,
+                        buttonHeight)
+                );
+    }
+
+    /**
+     * Generates the button to the
+     * SpringLayout using the Declarator information.
+     * @param layout SpringLayout
+     * @param object Object information
+     * @return Button
+     * @see Button
+     * @see Dimension
+     */
+    public final Button generateButton(
+            final SpringLayout layout,
+            final Declarator object) {
+        Button btn = new Button(object.getName());
+        add(btn);
+        btn.addActionListener(this);
+        layout.putConstraint(
+                SpringLayout.WEST,
+                btn, object.getPos().x,
+                SpringLayout.WEST, this);
+        layout.putConstraint(
+                SpringLayout.NORTH,
+                btn, object.getPos().y,
+                SpringLayout.NORTH, this);
+        btn.setPreferredSize(
+                new Dimension(
+                        object.getWidth(),
+                        object.getLength()));
+        return btn;
     }
 
     @Override
