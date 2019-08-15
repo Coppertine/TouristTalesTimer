@@ -5,7 +5,10 @@
  */
 package com.coppertine.tafe.touristtales;
 
+import com.coppertine.tafe.InfoLibrary;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -101,6 +104,22 @@ public class Timer {
      */
     public final void endTimer() {
         this.loggedEndTime = LocalDateTime.now();
+    }
+
+    /**
+     *
+     * @return Duration length of logged start and end times.
+     */
+    public final Duration getDuration() {
+        return Duration.between(getLoggedStartTime(), getLoggedEndTime());
+    }
+
+    @Override
+    public final String toString() {
+        return InfoLibrary.formatCSV(new String[] {
+            getLoggedStartTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+            getDuration().toString()
+        });
     }
 
 }
