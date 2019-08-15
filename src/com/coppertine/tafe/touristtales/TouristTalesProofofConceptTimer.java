@@ -71,16 +71,37 @@ public class TouristTalesProofofConceptTimer extends JFrame
         final int buttonHeight = 25;
         final int buttonLength = 80;
 
-        final Vector2 position = new Vector2(15, 200);
+        final Vector2 btnStartPosition = new Vector2(15, 200);
         btnStart = generateButton(
                 layout,
                 new Declarator(
                         btnStart,
                         "Start",
-                        position,
+                        btnStartPosition,
                         buttonLength,
                         buttonHeight)
                 );
+        final Vector2 btnStopPosition = new Vector2(105, 200);
+        btnStop = generateButton(
+                layout,
+                new Declarator(
+                        btnStop,
+                        "Stop",
+                        btnStopPosition,
+                        buttonLength,
+                        buttonHeight)
+                );
+        final Vector2 btnSettingsPosition = new Vector2(105, 200);
+        btnSettings = generateButton(
+                layout,
+                new Declarator(
+                        btnSettings,
+                        "Stop",
+                        btnSettingsPosition,
+                        buttonLength,
+                        buttonHeight)
+                );
+
     }
 
     /**
