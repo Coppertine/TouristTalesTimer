@@ -29,6 +29,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
      * Global Button objects used within program.
      */
     private Button btnStart, btnStop, btnSettings;
+    public Timer timerMain;
 
     /**
      * @param args the command line arguments
@@ -45,6 +46,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
     private void run() {
         final int windowLength = 550;
         final int windowHeight = 300;
+        this.timerMain = new Timer();
         setBounds(0, 0, windowLength, windowHeight);
         setTitle("TouristTales - Timer");
         SpringLayout layout = new SpringLayout();
@@ -134,13 +136,24 @@ public class TouristTalesProofofConceptTimer extends JFrame
         return btn;
     }
 
+    /**
+     *
+     */
+    public final void toggleTimer() {
+        if (timerMain.getStatus() == TimerStatus.Running) {
+            timerMain.startTimer();
+        } else {
+            timerMain.endTimer();
+        }
+    }
+
     @Override
     public final void actionPerformed(final ActionEvent e) {
         if (e.getSource() == btnStart) {
-            
+            toggleTimer();
         }
         if (e.getSource() == btnStop) {
-            
+            toggleTimer();
         }
         if (e.getSource() == btnSettings) {
             
