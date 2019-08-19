@@ -23,6 +23,9 @@
  */
 package com.coppertine.tafe.touristtales;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Coppertine
@@ -118,6 +121,25 @@ public class Config {
      */
     public final void setIntSecondMax(final int secondMax) {
         this.intSecondMax = secondMax;
+    }
+
+    /**
+     *
+     * @param startTime LocalDateTime of logged startTime
+     * @param endTime LocalDateTime of logged endTime
+     * @return Boolean If the logged time
+     * is longer than allotted time from configuration.
+     */
+    public final boolean compareTimes(
+            final LocalDateTime startTime,
+            final LocalDateTime endTime) {
+        final Duration compareDuration;
+        compareDuration = Duration.ofHours(getIntHourMax());
+        compareDuration.plusMinutes(getIntMinMax());
+        compareDuration.plusSeconds(getIntSecondMax());
+
+        return Duration.between(startTime, endTime)
+                .compareTo(compareDuration) > 0;
     }
 
 }
