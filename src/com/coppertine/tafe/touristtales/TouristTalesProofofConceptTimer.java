@@ -9,12 +9,14 @@ import com.coppertine.tafe.Declarator;
 import com.coppertine.tafe.Vector2;
 import java.awt.Button;
 import java.awt.Dimension;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
 
@@ -29,7 +31,18 @@ public class TouristTalesProofofConceptTimer extends JFrame
      * Global Button objects used within program.
      */
     private Button btnStart, btnStop, btnSettings;
-    public Timer timerMain;
+    
+    /**
+     * 
+     */
+    private Label lblStart, lblEnd;
+
+    /**
+     * Timer object for keeping temporary data before storing to the sheet.
+     */
+    private Timer timerMain;
+    
+    private String strFilePath;
 
     /**
      * @param args the command line arguments
@@ -47,6 +60,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
         final int windowLength = 550;
         final int windowHeight = 300;
         this.timerMain = new Timer();
+        strFilePath = "";
         setBounds(0, 0, windowLength, windowHeight);
         setTitle("TouristTales - Timer");
         SpringLayout layout = new SpringLayout();
@@ -63,6 +77,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
      */
     public final void generateGUI(final SpringLayout layout) {
         renderButtons(layout);
+        renderText(layout);
     }
 
     /**
@@ -138,12 +153,73 @@ public class TouristTalesProofofConceptTimer extends JFrame
 
     /**
      *
+     * @param layout SpringLayout of frame
+     */
+    public final void renderText(final SpringLayout layout) {
+        final int labelWidth = 250;
+        final int labelHeight = 12;
+        final Vector2 lblStartPosition = new Vector2(50, 50);
+        lblStart = generateLabel(
+                layout,
+                new Declarator(
+                    lblStart,
+                    "Start Time:",
+                    lblStartPosition,
+                    labelWidth,
+                    labelHeight
+                )
+        );
+
+        final Vector2 lblEndPosition = new Vector2(50, 80);
+        lblEnd = generateLabel(
+                layout,
+                new Declarator(
+                    lblStart,
+                    "End Time:",
+                    lblEndPosition,
+                    labelWidth,
+                    labelHeight
+                )
+        );
+    }
+
+    /**
+     *
+     * @param layout SpringLayout of frame
+     * @param object Declarator of object
+     * @return Button
+     */
+    public final Label generateLabel(
+            final SpringLayout layout,
+            final Declarator object) {
+        Label lbl = new Label(object.getName());
+        add(lbl);
+        layout.putConstraint(
+                SpringLayout.NORTH,
+                lbl, object.getPos().y,
+                SpringLayout.NORTH, this);
+        lbl.setPreferredSize(
+                new Dimension(
+                        object.getWidth(),
+                        object.getLength()));
+        return lbl;
+
+    }
+
+    /**
+     *
      */
     public final void toggleTimer() {
-        if (timerMain.getStatus() == TimerStatus.Running) {
+        if (timerMain.getStatus() == TimerStatus.Stopped) {
             timerMain.startTimer();
+            lblStart.setText("Start Time: "
+                    + timerMain.getLoggedStartTime()
+                            .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         } else {
             timerMain.endTimer();
+            lblEnd.setText("End Time: "
+                    + timerMain.getLoggedEndTime()
+                            .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         }
     }
 
