@@ -8,6 +8,7 @@ package com.coppertine.tafe.touristtales;
 import com.coppertine.tafe.Declarator;
 import com.coppertine.tafe.InfoLibrary;
 import com.coppertine.tafe.Vector2;
+import com.coppertine.tafe.touristtales.settings.Settings;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Label;
@@ -20,6 +21,7 @@ import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javafx.util.Duration;
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
 
@@ -115,7 +117,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
                         buttonLength,
                         buttonHeight)
                 );
-        final Vector2 btnSettingsPosition = new Vector2(105, 200);
+        final Vector2 btnSettingsPosition = new Vector2(185, 200);
         btnSettings = generateButton(
                 layout,
                 new Declarator(
@@ -257,6 +259,28 @@ public class TouristTalesProofofConceptTimer extends JFrame
             } catch (IOException e) {
                 throw e;
             }
+        } else {
+            try {
+                final ArrayList<String> currentFileContents =
+                        InfoLibrary.readFile(globalConfig.getStrFilePath());
+
+                currentFileContents.add(
+                        InfoLibrary.formatCSV(new String[] {
+                            timerMain.getLoggedStartTime()
+                                    .format(
+                                            DateTimeFormatter.
+                                                    ISO_LOCAL_DATE_TIME),
+                            Duration.ZERO.toString()
+                        })
+                );
+
+                InfoLibrary.writeFile(
+                        globalConfig.getStrFilePath(),
+                        true, currentFileContents);
+            } catch (IOException e) {
+                throw e;
+            }
+
         }
     }
 
@@ -269,7 +293,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
             toggleTimer();
         }
         if (e.getSource() == btnSettings) {
-            //
+            globalConfig = new Settings().open(globalConfig);
         }
     }
 

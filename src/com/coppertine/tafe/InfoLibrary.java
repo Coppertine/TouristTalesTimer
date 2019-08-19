@@ -94,6 +94,7 @@ public final class InfoLibrary {
             for (String line : list) {
                 out.println(line);
             }
+            System.out.println("Printed to " + new File(".").getAbsolutePath());
             out.close();
         } catch (IOException e) {
             throw e;

@@ -27,6 +27,7 @@ import com.coppertine.tafe.Declarator;
 import com.coppertine.tafe.Vector2;
 import com.coppertine.tafe.touristtales.Config;
 import java.awt.Button;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -49,30 +50,35 @@ public class Settings {
     private JTextField txtFilePath;
     private Button btnFilePath;
 
-    public final open(final Config inputConfig) {
+    /**
+     *
+     * @param inputConfig input configuration.
+     * @return <code>Config</code> from settings screen.
+     */
+    public final Config open(final Config inputConfig) {
         // Set up pannel //
 
         final int hourInputMax = 999;
         final int minInputMax = 60;
         final int secondInputMax = 60;
 
-        SpringLayout layout = new SpringLayout();
+        GridLayout layout = new GridLayout(0, 2);
         JPanel panel = new JPanel(layout);
-        spinHourMax = generateSpinner(layout, new Declarator(
+        spinHourMax = generateSpinner(panel, new Declarator(
                 new SpinnerNumberModel(
                         0, //Initial Input
                         0,
                         hourInputMax,
                         1 //Step
                 ), "Maximum Hour", new Vector2(0, 0), 0, 0));
-        spinMinMax = generateSpinner(layout, new Declarator(
+        spinMinMax = generateSpinner(panel, new Declarator(
                 new SpinnerNumberModel(
                         0, //Initial Input
                         0,
                         minInputMax,
                         1 //Step
                 ), "Maximum Minute", new Vector2(0, 0), 0, 0));
-        spinSecMax = generateSpinner(layout, new Declarator(
+        spinSecMax = generateSpinner(panel, new Declarator(
                 new SpinnerNumberModel(
                         0, //Initial Input
                         0,
@@ -80,22 +86,32 @@ public class Settings {
                         1 //Step
                 ), "Maximum Second", new Vector2(0, 0), 0, 0));
 
-        panel.add(spinHourMax);
+        // //
 
         final int result = JOptionPane.showConfirmDialog(
                         null, panel, "Settings", JOptionPane.OK_CANCEL_OPTION);
-        if(result == JOptionPane.OK_OPTION) {
-            return new Config(txtFilePath.getText(),
-                                (int)spinHourMax.getValue(),
-                                (int)spinMinMax.getValue(),
-                                (int)spinSecMax.getValue());
+        if (result == JOptionPane.OK_OPTION) {
+            return new Config(
+                    txtFilePath.getText(),
+                    (int) spinHourMax.getValue(),
+                    (int) spinMinMax.getValue(),
+                    (int) spinSecMax.getValue());
+        } else {
+            return inputConfig;
         }
     }
-
-    public final JSpinner generateSpinner(SpringLayout layout, Declarator object) {
+    /**
+     *
+     * @param layout
+     * @param object
+     * @return
+     */
+    public final JSpinner generateSpinner(
+            final JPanel panel, final Declarator object) {
         JLabel lbl = new JLabel(object.getName());
-        JSpinner spinner = new JSpinner((SpinnerModel)object.getObj());
-        lbl.setLabelFor(spinner);
-        
+        JSpinner spinner = new JSpinner((SpinnerModel) object.getObj());
+        panel.add(lbl);
+        panel.add(spinner);
+        return spinner;
     }
 }
