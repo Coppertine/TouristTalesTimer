@@ -41,6 +41,7 @@ public class Timer {
      * Empty Constructor.
      */
     public Timer() {
+        this.status = TimerStatus.Stopped;
     }
 
     /**
@@ -57,6 +58,7 @@ public class Timer {
         this.loggedStartTime = loggedStart;
         this.loggedEndTime = loggedEnd;
     }
+
 
     /**
      *
@@ -88,6 +90,7 @@ public class Timer {
      */
     public final void startTimer() {
         this.loggedStartTime = LocalDateTime.now();
+        this.status = TimerStatus.Running;
     }
 
     /**
@@ -104,6 +107,7 @@ public class Timer {
      */
     public final void endTimer() {
         this.loggedEndTime = LocalDateTime.now();
+        this.status = TimerStatus.Stopped;
     }
 
     /**
