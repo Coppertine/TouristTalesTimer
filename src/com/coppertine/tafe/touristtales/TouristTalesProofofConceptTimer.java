@@ -6,6 +6,7 @@
 package com.coppertine.tafe.touristtales;
 
 import com.coppertine.tafe.Declarator;
+import com.coppertine.tafe.InfoLibrary;
 import com.coppertine.tafe.Vector2;
 import java.awt.Button;
 import java.awt.Dimension;
@@ -16,7 +17,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
 
@@ -31,9 +34,9 @@ public class TouristTalesProofofConceptTimer extends JFrame
      * Global Button objects used within program.
      */
     private Button btnStart, btnStop, btnSettings;
-    
+
     /**
-     * 
+     * Global Labels used within program.
      */
     private Label lblStart, lblEnd;
 
@@ -41,8 +44,11 @@ public class TouristTalesProofofConceptTimer extends JFrame
      * Timer object for keeping temporary data before storing to the sheet.
      */
     private Timer timerMain;
-    
-    private String strFilePath;
+
+    /**
+     * Configuration Object.
+     */
+    private Config globalConfig;
 
     /**
      * @param args the command line arguments
@@ -60,7 +66,8 @@ public class TouristTalesProofofConceptTimer extends JFrame
         final int windowLength = 550;
         final int windowHeight = 300;
         this.timerMain = new Timer();
-        strFilePath = "";
+        this.globalConfig = new Config();
+
         setBounds(0, 0, windowLength, windowHeight);
         setTitle("TouristTales - Timer");
         SpringLayout layout = new SpringLayout();
@@ -220,6 +227,36 @@ public class TouristTalesProofofConceptTimer extends JFrame
             lblEnd.setText("End Time: "
                     + timerMain.getLoggedEndTime()
                             .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            try {
+                System.out.println("Writing File");
+                logDuration();
+            } catch (IOException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+    /**
+     *
+     * @throws java.io.IOException if errors are found
+     * when reading or writing to file.
+     */
+    public final void logDuration()
+            throws IOException {
+        if (!globalConfig.compareTimes(
+                timerMain.getLoggedStartTime(),
+                timerMain.getLoggedEndTime())) {
+            try {
+                final ArrayList<String> currentFileContents =
+                        InfoLibrary.readFile(globalConfig.getStrFilePath());
+
+                currentFileContents.add(timerMain.toString());
+
+                InfoLibrary.writeFile(
+                        globalConfig.getStrFilePath(),
+                        true, currentFileContents);
+            } catch (IOException e) {
+                throw e;
+            }
         }
     }
 
@@ -232,7 +269,7 @@ public class TouristTalesProofofConceptTimer extends JFrame
             toggleTimer();
         }
         if (e.getSource() == btnSettings) {
-            
+            //
         }
     }
 

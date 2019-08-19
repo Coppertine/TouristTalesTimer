@@ -125,5 +125,4 @@ public class Timer {
             getDuration().toString()
         });
     }
-
 }

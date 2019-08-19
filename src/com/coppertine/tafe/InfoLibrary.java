@@ -40,7 +40,7 @@ public final class InfoLibrary {
     public static ArrayList<String>
         readFile(final String fileName) throws IOException {
         if (!new File(fileName).exists()) {
-            return null;
+            return new ArrayList<>();
         }
 
         ArrayList<String> list = new ArrayList<String>();
@@ -106,8 +106,7 @@ public final class InfoLibrary {
      * @param input String to be converted to a RandomAccess type.
      * @throws IOException if issues are found when writing
      */
-    public static void
-        writeRAF(
+    public static void writeRAF(
                 final String fileName,
                 final String input) throws IOException {
         try {
