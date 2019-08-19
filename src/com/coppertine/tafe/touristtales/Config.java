@@ -43,9 +43,7 @@ public class Config {
      *
      */
     private int intMinMax;
-    /**
-     *
-     */
+    /**  */
     private int intSecondMax;
 
     /**
@@ -58,6 +56,23 @@ public class Config {
         intMinMax = minMax; // 5 Minutes Default
         intSecondMax = 0;
     }
+
+    /**
+     *
+     * @param filePath String to point to file.
+     * @param hourMax maximum hour for timer.
+     * @param minMax maximum minute for timer.
+     * @param secondMax maximum
+     */
+    public Config(final String filePath,
+            final int hourMax,
+            final int minMax, final int secondMax) {
+        this.strFilePath = filePath;
+        this.intHourMax = hourMax;
+        this.intMinMax = minMax;
+        this.intSecondMax = secondMax;
+    }
+
 
     /**
      * Gets file path spesified from program.
