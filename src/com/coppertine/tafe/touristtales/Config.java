@@ -56,4 +56,68 @@ public class Config {
         intSecondMax = 0;
     }
 
+    /**
+     * Gets file path spesified from program.
+     * @return String file path.
+     */
+    public final String getStrFilePath() {
+        return strFilePath;
+    }
+
+    /**
+     * sets the file path of the program.
+     * @param filePath File Path String to set.
+     */
+    public final void setStrFilePath(final String filePath) {
+        this.strFilePath = filePath;
+    }
+
+    /**
+     * Gets maximum hour to log user's time.
+     * @return integer Hour.
+     */
+    public final int getIntHourMax() {
+        return intHourMax;
+    }
+
+    /**
+     * Sets specified maximum hour to program.
+     * @param hourMax integer.
+     */
+    public final void setIntHourMax(final int hourMax) {
+        this.intHourMax = hourMax;
+    }
+
+    /**
+     * Gets maximum minute for time to be logged.
+     * @return integer maximum minutes.
+     */
+    public final int getIntMinMax() {
+        return intMinMax;
+    }
+
+    /**
+     * Sets maximum minute for time to be logged.
+     * @param minMax integer maximum minute
+     */
+    public final void setIntMinMax(final int minMax) {
+        this.intMinMax = minMax;
+    }
+
+    /**
+     * Gets maximum seconds.
+     * @return integer maximum second.
+     */
+    public final int getIntSecondMax() {
+        return intSecondMax;
+    }
+
+    /**
+     * sets maximum second.
+     * @param secondMax integer of maximum second.
+     */
+    public final void setIntSecondMax(final int secondMax) {
+        this.intSecondMax = secondMax;
+    }
+
 }
