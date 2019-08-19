@@ -134,9 +134,10 @@ public class Config {
             final LocalDateTime startTime,
             final LocalDateTime endTime) {
         final Duration compareDuration;
-        compareDuration = Duration.ofHours(getIntHourMax());
-        compareDuration.plusMinutes(getIntMinMax());
-        compareDuration.plusSeconds(getIntSecondMax());
+        compareDuration = Duration
+                .ofMinutes(getIntMinMax())
+                .plusHours(getIntHourMax())
+                .plusSeconds(getIntSecondMax());
 
         return Duration.between(startTime, endTime)
                 .compareTo(compareDuration) > 0;
